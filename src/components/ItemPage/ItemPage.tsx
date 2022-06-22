@@ -9,13 +9,15 @@ const ItemPage: FC = () => {
 
   const [price, setPrice] = useState("");
   const [priceStorage, setPriceStorage] = useState("");
+  const [storage, setStorage] = useState("");
 
   function handleOnClickPrice(price: string) {
     setPrice(price);
   }
 
-  function handleOnClickPriceStorage(price: string) {
+  function handleOnClickPriceStorage(price: string, value: string) {
     setPriceStorage(price);
+    setStorage(value);
   }
   return (
     <div className="w-full my-0 mx-auto">
@@ -30,9 +32,11 @@ const ItemPage: FC = () => {
       <div className="bg-[#ffffff]">
         <DetailItem
           iphones={iphones}
+          storage={storage}
+          priceStorage={priceStorage}
           handleOnClickPrice={(value: string) => handleOnClickPrice(value)}
-          handleOnClickPriceStorage={(value: string) =>
-            handleOnClickPriceStorage(value)
+          handleOnClickPriceStorage={(value: string, storage: string) =>
+            handleOnClickPriceStorage(value, storage)
           }
         />
       </div>

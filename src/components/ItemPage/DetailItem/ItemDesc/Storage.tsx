@@ -4,7 +4,7 @@ interface IStorage {
   iphones: any;
   indexItem: number;
   storages: any;
-  handleOnClickPriceStorage: (value: string) => void;
+  handleOnClickPriceStorage: (value: string, storage: string) => void;
 }
 const Storage: FC<IStorage> = ({
   iphones,
@@ -13,9 +13,9 @@ const Storage: FC<IStorage> = ({
   handleOnClickPriceStorage,
 }) => {
   const [activeStorage, setActiveStorage] = useState(99);
-  const handleStorage = (index: number, value: string) => {
+  const handleStorage = (index: number, value: string, storage: string) => {
     setActiveStorage(index);
-    handleOnClickPriceStorage(value);
+    handleOnClickPriceStorage(value, storage);
   };
   return (
     <div className="border-b border-gray-300 pt-3">
@@ -30,7 +30,13 @@ const Storage: FC<IStorage> = ({
                 (storage: any, index: number) => (
                   <div
                     key={index}
-                    onClick={() => handleStorage(index, storage.monthlyFrom)}
+                    onClick={() =>
+                      handleStorage(
+                        index,
+                        storage.monthlyFrom,
+                        storage.capacity
+                      )
+                    }
                     className={`flex items-center justify-center border-1 rounded-[10px] border-gray-300 h-[100px] p-[26px] cursor-pointer hover:outline hover:outline-gray-500 active:outline active:outline-black ${
                       activeStorage === index ? "outline outline-gray-500" : ""
                     }`}

@@ -5,12 +5,16 @@ import ItemImg from "./DetailItem/ItemImg";
 
 interface IDetailItem {
   iphones: any;
+  priceStorage: string;
+  storage: string;
   handleOnClickPrice: (value: string) => void;
-  handleOnClickPriceStorage: (value: string) => void;
+  handleOnClickPriceStorage: (value: string, storage: string) => void;
 }
 
 const DetailItem: FC<IDetailItem> = ({
   iphones,
+  priceStorage,
+  storage,
   handleOnClickPrice,
   handleOnClickPriceStorage,
 }) => {
@@ -56,11 +60,13 @@ const DetailItem: FC<IDetailItem> = ({
             iphones={iphones}
             indexItem={index}
             indexColor={indexColor}
+            price={priceStorage}
+            storage={storage}
             handleOnClickPrice={(value: string) => handleOnClickPrice(value)}
             currentImg={currentImg}
             color={color}
-            handleOnClickPriceStorage={(value: string) =>
-              handleOnClickPriceStorage(value)
+            handleOnClickPriceStorage={(value: string, storage: string) =>
+              handleOnClickPriceStorage(value, storage)
             }
             handleOnClickImg={(link: string, index: number) =>
               handleOnClickImg(link, index)

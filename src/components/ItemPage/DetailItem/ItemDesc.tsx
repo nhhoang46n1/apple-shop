@@ -11,8 +11,10 @@ interface IItemDesc {
   iphones: any;
   currentImg: string;
   color: string;
+  price: string;
+  storage: string;
   handleOnClickPrice: (value: string) => void;
-  handleOnClickPriceStorage: (value: string) => void;
+  handleOnClickPriceStorage: (value: string, storage: string) => void;
   handleOnClickImg: (link: string, index: number) => void;
   handleColor: (value: string, index: number) => void;
 }
@@ -22,6 +24,8 @@ const ItemDesc: FC<IItemDesc> = ({
   iphones,
   currentImg,
   color,
+  storage,
+  price,
   handleOnClickPrice,
   handleOnClickPriceStorage,
   handleOnClickImg,
@@ -30,8 +34,14 @@ const ItemDesc: FC<IItemDesc> = ({
   const dispatch = useDispatch();
   const nameIphone = iphones[0]?.name;
 
-  function handleAddItem(item: any, color: string, currentImg: string) {
-    dispatch(addItem({ item, color, currentImg }));
+  function handleAddItem(
+    item: any,
+    color: string,
+    currentImg: string,
+    price: string,
+    storage: string
+  ) {
+    dispatch(addItem({ item, color, currentImg, price, storage }));
   }
 
   return (
@@ -84,8 +94,8 @@ const ItemDesc: FC<IItemDesc> = ({
                   iphones={iphone?.relatedProduct}
                   indexItem={indexItem}
                   storages={iphone?.storage}
-                  handleOnClickPriceStorage={(value: string) =>
-                    handleOnClickPriceStorage(value)
+                  handleOnClickPriceStorage={(value: string, storage: string) =>
+                    handleOnClickPriceStorage(value, storage)
                   }
                 />
               </div>
@@ -99,7 +109,9 @@ const ItemDesc: FC<IItemDesc> = ({
             handleAddItem(
               iphones[0].relatedProduct[indexItem],
               color,
-              currentImg
+              currentImg,
+              price,
+              storage
             )
           }
         >
